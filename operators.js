@@ -30,4 +30,4 @@ var j = 1;
 while (j <= 10) {
   console.log('el in while: ', j);
   j = j + 1;
-}
+}   
