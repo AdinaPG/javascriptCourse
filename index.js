@@ -13,6 +13,7 @@ import './webstorage.js';
 import './dom-events.js';
 import './dom-access.js';
 import './objects.js';
+import './homework.js';
 
 
 // console.log('x: ', x);
