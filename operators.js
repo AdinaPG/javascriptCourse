@@ -1,33 +1,21 @@
-var a = 2;
-var b = '2';
+let a = '2';
+let b = 2;
 
-var c = new String('test');
-
-if (a === b) {
+if (a == b) {
   console.log('equals');
 } else {
   console.log('not equals');
 }
 
-console.log(typeof a);
-console.log(typeof b);
-console.log(typeof c);
+console.log(2 + '3'); //will produce 23
+console.log(2 + 4 + '3'); //will produce 63
+console.log(2 + '4' + 3); //will produce 243
 
-console.log(c instanceof String);
+console.log('text' + 2); //will produce text2
+console.log('text' + 'text'); //will prodcue texttext
 
-console.log(2 + 'test');
-console.log(2 + 3 + ' test');
-console.log('a' + 'b' + '5');
-
-console.log(5 - 3);
-console.log(5 - '3');
-console.log(5 - 'a');
-
-for (i = 1; i <= 10; i++) {
-  console.log('el: ', i);
-}
-var j = 1;
-while (j <= 10) {
-  console.log('el in while: ', j);
-  j = j + 1;
-}   
+let x = 'test';
+let y = new String('test1');
+console.log('type ' + typeof x);
+console.log('instance ', y instanceof String);
+console.log('type ' + typeof y);
