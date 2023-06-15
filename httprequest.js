@@ -1,66 +1,89 @@
-// //loadRequest('https://meowfacts.herokuapp.com/fact', myFunction1);
-// // function loadRequest(url, cFunction) {
-// //   const xhttp = new XMLHttpRequest();
-// //   xhttp.onload = function () {
-// //     cFunction(xhttp);
-// //   };
-// //   xhttp.open('GET', url);
-// //   xhttp.send();
-// // }
+// function loadRequest(url, callbackFunction){
+//   let request = new XMLHttpRequest();
+//   request.onload = function(){
+//     callbackFunction(request);
+//   };
+//   request.open('GET', url);
+//   request.send();
+// }
+// function displayCallback(req){
+//   document.getElementById('demo').innerHTML = req.responseText;
+ 
+// };
+// loadRequest('https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=11007', displayCallback);
 
-// // function myFunction1(xhttp) {
-// //   document.getElementById('demo').innerHTML = xhttp.responseText;
-// // }
+// function loadRequest(url,callbackFunction){
+//   let req = new XMLHttpRequest();
+//   req.onreadystatechange = function(){
+//     callbackFunction(req);
+//   };
+//   req.open('GET', url);
+//   req.send();
+// };
 
-// // function loadRequest1(url, cFunction) {
-// //   const xhttp = new XMLHttpRequest();
-// //   xhttp.onreadystatechange = function () {
-// //     console.log('dfs status: ' + xhttp.status + ' ' + xhttp.readyState);
-// //     cFunction(xhttp);
-// //   };
-// //   xhttp.open('GET', url);
-// //   xhttp.send();
-// // }
+// function displayCallback(req){
+//   if(req.readyState ==4 && req.status == 200)
+//   {
+// document.getElementById('demo').innerHTML  = req.responseText;
+//   } else if(req.readyState == 4 && req.status == 404)
+//   {
+// console.error('NOT FOUND:  ', req.status);
+//   } else 
+//   {
+// console.log('status: ' + req.status + ' ' + req.readyState);
+//   }
+// }
+// loadRequest('https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=11007', displayCallback);
 
-// // function myFunction2(xhttp) {
-// //   console.log('request', xhttp.status);
-// //   if (xhttp.readyState == 4 && xhttp.status == 200) {
-// //     //here we know that the request is done because readyState is 4 and it's done with success because status is 200
-// //     document.getElementById('demo').innerHTML = xhttp.responseText;
-// //     console.log(xhttp.responseText);
-// //     var obj = JSON.parse(xhttp.responseText);
-// //     return xhttp.responseText;
-// //   } else if (xhttp.readyState == 4 && xhttp.status == 404) {
-// //     //here we can make different things for different statuses: for 404 for example to show an error message
-// //     //to obtain an 404 error just modify the url to invalidate it
-// //     console.error('NOT FOUND: ' + xhttp.status);
-// //     return 'NOT FOUND';
-// //   } else {
-// //     console.log('status: ' + xhttp.status + ' ' + xhttp.readyState);
-// //   }
-// // }
 
-// // loadRequest1('https://meowfacts.herokuapp.com', myFunction2);
-
-// function makeRequest(method, url) {
-//   return new Promise(function (resolve, reject) {
-//     var xhr = new XMLHttpRequest();
-//     xhr.open(method, url);
-//     xhr.onload = function () {
-//       if (xhr.status >= 200 && xhr.status < 300) {
-//         resolve(xhr.response);
+//exemple http request + promise
+// function makeRequest(method,url){
+//   let promise = new Promise(function(resolve, reject){
+//     var req = new XMLHttpRequest();
+//     req.onload = function(){
+//       if(req.status >= 200 && req.status <= 300){
+//         resolve(req.responseText);
 //       } else {
-//         reject(xhr.statusText);
+//         reject(req.status)
 //       }
 //     };
-//     xhr.send();
+//     req.open(method,url);
+//     req.send();
 //   });
+//   return promise;
 // }
 
-// makeRequest('GET', 'https://dog.ceo/api/breeds/image/random')
-//   .then((res) => {
-//     var mess = JSON.parse(res);
-//     console.log(mess.message);
-//     document.getElementById('img').src = mess.message;
-//   })
-//   .catch((err) => console.error(err));
+// makeRequest('GET','https://dog.ceo/api/breeds/image/random1').
+// then((res) => {
+// var result = JSON.parse(res);
+// console.log(result);
+// document.getElementsByTagName('img')[0].src = result.message;
+// }, 
+// (error) => console.log(error));
+
+// .catch((err) => console.error(err) 
+// );
+
+//Async-Await ex
+
+async function display(){
+  let promise = new Promise(function(resolve,reject){
+    resolve('Resolved promise');
+  });
+  document.getElementById('demo').innerHTML = await promise;
+}
+display();
+
+function newDisplay(){
+  let promise = new Promise(function(resolve,reject){
+    setTimeout(() => resolve('Resolved promise with setTimeout'), 3000);
+  });
+  return promise;
+};
+async function waitForResponse(){
+  document.getElementById('time').innerHTML = await newDisplay();
+}
+waitForResponse();
+
+
+

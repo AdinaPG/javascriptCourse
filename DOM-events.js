@@ -111,3 +111,5 @@ myPromise.then(
 //     (error) => handleError(error)
 //   )
 //   .then((value) => console.log('value: ' + value));
+
+
