@@ -13,7 +13,7 @@
 // import './dom-access.js';
 // import './objects.js';
 // import './homework.js';
-// //import './DOM-events.js';
+import './DOM-events.js';
 
 
 // console.log('x: ', x);

@@ -56,28 +56,58 @@
 // //showTime este callbackul nostru, ce vrem sa faca si in ce interval
 // setInterval(showTime,3000);
 
-function doSomething(callback){
-  console.log('do something');
-  callback();
+// function doSomething(callback){
+//   console.log('do something');
+//   callback();
+// }
+// function doSomethingElse(callback){
+//   console.log('do something else');
+//   callback();
+// }
+
+// function doThirdThing(callback){
+//   console.log('do third thing');
+//   callback();
+// }
+
+// doSomething(function(){
+//   console.log('first call back');
+//   doSomethingElse(function(){
+//     console.log('second callback');
+//     doThirdThing(function(){
+//       console.log('third callback'); 
+//     });
+//   });
+// });
+
+
+//Math.floor ia
+let myPromise = new Promise(function (resolve, reject) {
+  let x = Math.floor(Math.random() * 10);
+  if (x > 3) {
+    resolve('OK: ' + x);
+  } else {
+    reject('Reject: ' + x);
+  }
+});
+
+function display(message) {
+  document.getElementById('promise-message').innerHTML = message;
+  return res;
 }
-function doSomethingElse(callback){
-  console.log('do something else');
-  callback();
+
+function handleError(error) {
+  console.error(error);
+  return error;
 }
+myPromise.then(
+  (value) => display(value),
+  (error) => console.error(error)
+);
 
-function doThirdThing(callback){
-  console.log('do third thing');
-  callback();
-}
-
-doSomething(function(){
-  console.log('first call back');
-  doSomethingElse(function(){
-    console.log('second callback');
-    doThirdThing(function(){
-      console.log('third callback');
-    })
-  })
-})
-
-
+// myPromise
+//   .then(
+//     (value) => display(value),
+//     (error) => handleError(error)
+//   )
+//   .then((value) => console.log('value: ' + value));
